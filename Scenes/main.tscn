@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuh1b6oat4n68"]
+
+[ext_resource type="PackedScene" uid="uid://b8vko300dybyo" path="res://Scenes/player.tscn" id="1_v2dk6"]
+[ext_resource type="PackedScene" uid="uid://b5tid0lqadfb1" path="res://Scenes/enemy.tscn" id="2_46ln5"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_b6hu8"]
+distance = -61.0
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_v2dk6")]
+speed = 300.0
+jump_velocity = -600.0
+dashCooldown = 0.5
+dashDuration = 0.15
+max_health = 100
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_b6hu8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Enemy" parent="." instance=ExtResource("2_46ln5")]
+position = Vector2(215, -46)
