@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8vwhlbudubkq"]
+
+[ext_resource type="Script" path="res://Scripts/Components/attack_component.gd" id="1_untdc"]
+[ext_resource type="Texture2D" uid="uid://7vbjlwhtwx4b" path="res://icon.svg" id="2_spbe1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trirw"]
+
+[node name="AttackComponent" type="ShapeCast2D"]
+visible = false
+enabled = false
+shape = SubResource("RectangleShape2D_trirw")
+target_position = Vector2(0, 0)
+collide_with_areas = true
+script = ExtResource("1_untdc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_spbe1")
+
+[node name="AttackDuration" type="Timer" parent="."]
+wait_time = 0.15
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="timeout" from="AttackDuration" to="." method="_on_attack_duration_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

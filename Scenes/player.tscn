@@ -1,17 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8vko300dybyo"]
+[gd_scene load_steps=7 format=3 uid="uid://b8vko300dybyo"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_fatoe"]
 [ext_resource type="Texture2D" uid="uid://7vbjlwhtwx4b" path="res://icon.svg" id="1_mabmo"]
+[ext_resource type="PackedScene" uid="uid://cib7412snd7l5" path="res://Scenes/Components/health_component.tscn" id="3_yp32f"]
+[ext_resource type="PackedScene" uid="uid://b8vwhlbudubkq" path="res://Scenes/Components/attack_component.tscn" id="4_dlhmm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cjei6"]
 size = Vector2(126.5, 120)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dfdl"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bvhh0"]
 size = Vector2(100, 30)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_fatoe")
-dashCooldown = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -70)
@@ -21,6 +22,12 @@ texture = ExtResource("1_mabmo")
 position = Vector2(-0.25, -68)
 shape = SubResource("RectangleShape2D_cjei6")
 
+[node name="HealthComponent" parent="." instance=ExtResource("3_yp32f")]
+
+[node name="AttackComponent" parent="." instance=ExtResource("4_dlhmm")]
+position = Vector2(100, -70)
+shape = SubResource("RectangleShape2D_bvhh0")
+
 [node name="timers" type="Node" parent="."]
 
 [node name="DashCooldown" type="Timer" parent="timers"]
@@ -28,11 +35,6 @@ wait_time = 0.5
 
 [node name="DashDuration" type="Timer" parent="timers"]
 wait_time = 0.15
-
-[node name="AttackRay" type="ShapeCast2D" parent="."]
-position = Vector2(100, -70)
-shape = SubResource("RectangleShape2D_6dfdl")
-target_position = Vector2(0, 0)
 
 [connection signal="timeout" from="timers/DashCooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="timeout" from="timers/DashDuration" to="." method="_on_dash_duration_timeout"]

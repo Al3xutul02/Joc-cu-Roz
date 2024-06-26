@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5tid0lqadfb1"]
+[gd_scene load_steps=7 format=3 uid="uid://b5tid0lqadfb1"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_131o4"]
 [ext_resource type="Texture2D" uid="uid://7vbjlwhtwx4b" path="res://icon.svg" id="1_gffyh"]
-[ext_resource type="Script" path="res://Scripts/HealthComponent.gd" id="2_w6ghu"]
+[ext_resource type="PackedScene" uid="uid://cib7412snd7l5" path="res://Scenes/Components/health_component.tscn" id="3_7ktcm"]
+[ext_resource type="PackedScene" uid="uid://b8vwhlbudubkq" path="res://Scenes/Components/attack_component.tscn" id="4_twilm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o21qo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nlw0t"]
+size = Vector2(50, 20)
 
 [node name="Enemy" type="RigidBody2D"]
 script = ExtResource("1_131o4")
@@ -19,5 +23,9 @@ position = Vector2(0, -35)
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_o21qo")
 
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("2_w6ghu")
+[node name="HealthComponent" parent="." instance=ExtResource("3_7ktcm")]
+
+[node name="AttackComponent" parent="." instance=ExtResource("4_twilm")]
+position = Vector2(-50, -35)
+shape = SubResource("RectangleShape2D_nlw0t")
+attack_cooldown_time = 1.0
