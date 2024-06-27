@@ -1,12 +1,12 @@
 extends RigidBody2D
 class_name Enemy
 
+# Get components
 @onready var health_component = $HealthComponent
 @onready var attack_component = $AttackComponent
+@onready var hitbox_component = $HitboxComponent
 
-func _ready():
-	pass # Replace with function body.
-
+var direction = -1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

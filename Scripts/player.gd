@@ -5,11 +5,11 @@ extends CharacterBody2D
 @export var jump_velocity: float = -600.0
 @export var dash_cooldown_time: float = 0.5
 @export var dash_duration_time: float = 0.15
-@export var max_health: int = 100
 
 # Imported variables
 @onready var health_component = $HealthComponent
 @onready var attack_component = $AttackComponent
+@onready var hitbox_component = $HitboxComponent
 
 # Timers
 @onready var dash_cooldown: Timer = $timers/DashCooldown
@@ -19,6 +19,7 @@ extends CharacterBody2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var dash_speed: float = speed * 5
+var direction: int = 1
 
 # Boolean variables
 var can_dash: bool
@@ -43,7 +44,7 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("move_left", "move_right")
+	direction = Input.get_axis("move_left", "move_right")
 	if is_dashing:
 		velocity.x = velocity.sign().x * dash_speed
 	else:
