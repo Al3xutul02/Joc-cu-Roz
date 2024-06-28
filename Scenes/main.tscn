@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cuh1b6oat4n68"]
+[gd_scene load_steps=6 format=3 uid="uid://cuh1b6oat4n68"]
 
 [ext_resource type="PackedScene" uid="uid://b8vko300dybyo" path="res://Scenes/player.tscn" id="1_v2dk6"]
 [ext_resource type="PackedScene" uid="uid://b5tid0lqadfb1" path="res://Scenes/enemy.tscn" id="2_46ln5"]
+[ext_resource type="PackedScene" uid="uid://d3mkp80eltp23" path="res://Scenes/player_camera.tscn" id="2_n7ut7"]
+[ext_resource type="PackedScene" uid="uid://2118u6xkk1lx" path="res://Scenes/user_interface.tscn" id="3_geku2"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_b6hu8"]
 distance = -61.0
@@ -18,7 +20,9 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("WorldBoundaryShape2D_b6hu8")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="PlayerCamera" parent="." instance=ExtResource("2_n7ut7")]
+
+[node name="UserInterface" parent="." instance=ExtResource("3_geku2")]
 
 [node name="Enemy" parent="." instance=ExtResource("2_46ln5")]
 position = Vector2(212, 27)

@@ -32,7 +32,7 @@ func _on_attack_duration_timeout():
 		for iterator in get_collision_count():
 			var enemy = get_collider(iterator)
 			# Verify if it's an enemy
-			if enemy is Enemy or enemy is CharacterBody2D:
+			if enemy is Enemy or enemy is Player:
 				attack_direction = position.x - parent_node.position.x
 				enemy.hitbox_component.apply_knockback(attack_knockback_force, attack_direction)
 				enemy.hitbox_component.apply_damage(damage)

@@ -11,6 +11,8 @@ enabled = false
 shape = SubResource("RectangleShape2D_trirw")
 target_position = Vector2(0, 0)
 script = ExtResource("1_untdc")
+attack_duration_time = 0.02
+attack_cooldown_time = 0.2
 attack_knockback_force = Vector2(200, -600)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -12,11 +12,16 @@ var health: int:
 var health_pct: int:
 	get:
 		return health * 100 / max_health
+		
+# Boolean values
+var can_be_damaged: bool = true
 
 # Function for taking damage
 func set_damage_taken(damage):
 	health -= damage
 	if health == 0:
+		if get_parent() is Player:
+			get_tree().reload_current_scene()
 		get_parent().queue_free()
 
 # Initialising health

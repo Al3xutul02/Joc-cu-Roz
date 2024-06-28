@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://d3mkp80eltp23"]
+
+[node name="PlayerCamera" type="Camera2D"]
+top_level = true

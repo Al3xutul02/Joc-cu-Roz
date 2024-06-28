@@ -13,6 +13,7 @@ size = Vector2(60, 60)
 size = Vector2(50, 20)
 
 [node name="Enemy" type="RigidBody2D"]
+modulate = Color(1, 0.494118, 0.498039, 1)
 collision_layer = 2
 collision_mask = 2
 angular_damp = 100.0
@@ -33,3 +34,10 @@ shape = SubResource("RectangleShape2D_ueuyb")
 position = Vector2(-50, -35)
 shape = SubResource("RectangleShape2D_nlw0t")
 attack_cooldown_time = 1.0
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -35.0
+offset_top = -80.0
+offset_right = 35.0
+offset_bottom = -71.0
+show_percentage = false

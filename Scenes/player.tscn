@@ -30,6 +30,12 @@ position = Vector2(100, -70)
 shape = SubResource("RectangleShape2D_bvhh0")
 collision_mask = 2
 
+[node name="DashBar" type="ProgressBar" parent="."]
+offset_left = -48.0
+offset_right = 52.0
+offset_bottom = 17.0
+show_percentage = false
+
 [node name="timers" type="Node" parent="."]
 
 [node name="DashCooldown" type="Timer" parent="timers"]

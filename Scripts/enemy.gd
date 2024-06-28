@@ -5,8 +5,14 @@ class_name Enemy
 @onready var health_component = $HealthComponent
 @onready var attack_component = $AttackComponent
 @onready var hitbox_component = $HitboxComponent
+@onready var health_bar = $HealthBar
 
 var direction = -1
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	health_bar.value = health_component.health_pct
+	health_bar.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
