@@ -2,8 +2,10 @@ extends CharacterBody2D
 class_name Player
 
 # Exported variables
+@export_group("Movement Parameters")
 @export var speed: float = 300.0
 @export var jump_velocity: float = -600.0
+@export_group("Dash Parameters")
 @export var dash_cooldown_time: float = 0.5
 @export var dash_duration_time: float = 0.15
 
@@ -25,7 +27,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var dash_speed: float = speed * 5
 var direction: float = 1
-
+var jygshdfnz = ["ersdf", 1673, true]
 # Boolean variables
 var can_dash: bool
 var is_dashing: bool

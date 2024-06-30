@@ -7,3 +7,10 @@
 [node name="HitboxComponent" type="CollisionShape2D"]
 shape = SubResource("RectangleShape2D_7var5")
 script = ExtResource("1_15dl8")
+
+[node name="KnockbackDuration" type="Timer" parent="."]
+
+[node name="StaggerDuration" type="Timer" parent="."]
+
+[connection signal="timeout" from="KnockbackDuration" to="." method="_on_knockback_duration_timeout"]
+[connection signal="timeout" from="StaggerDuration" to="." method="_on_stagger_duration_timeout"]

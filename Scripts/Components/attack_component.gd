@@ -6,12 +6,13 @@ class_name AttackComponent
 @export var attack_duration_time: float = 0.15
 @export var attack_cooldown_time: float = 0.30
 @export var attack_knockback_force: Vector2 = Vector2(100.0, -300.0)
+@export var knockback_duration_time: float = 0.75
 @export var attack_direction: float:
 	set(value):
 		attack_direction = clamp(value, -1, 1)
 
-@onready var attack_duration = $AttackDuration
-@onready var attack_cooldown = $AttackCooldown
+@onready var attack_duration: Timer = $AttackDuration
+@onready var attack_cooldown: Timer = $AttackCooldown
 
 var parent_node: Node2D
 
@@ -34,7 +35,7 @@ func _on_attack_duration_timeout():
 			# Verify if it's an enemy
 			if enemy is Enemy or enemy is Player:
 				attack_direction = position.x - parent_node.position.x
-				enemy.hitbox_component.apply_knockback(attack_knockback_force, attack_direction)
+				enemy.hitbox_component.apply_knockback(attack_knockback_force, attack_direction, knockback_duration_time)
 				enemy.hitbox_component.apply_damage(damage)
 
 	# Disable the component
