@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cuh1b6oat4n68"]
+[gd_scene load_steps=8 format=3 uid="uid://cuh1b6oat4n68"]
 
 [ext_resource type="PackedScene" uid="uid://b8vko300dybyo" path="res://Scenes/player.tscn" id="1_v2dk6"]
-[ext_resource type="PackedScene" uid="uid://b5tid0lqadfb1" path="res://Scenes/enemy.tscn" id="2_46ln5"]
 [ext_resource type="PackedScene" uid="uid://d3mkp80eltp23" path="res://Scenes/player_camera.tscn" id="2_n7ut7"]
 [ext_resource type="PackedScene" uid="uid://2118u6xkk1lx" path="res://Scenes/user_interface.tscn" id="3_geku2"]
+[ext_resource type="PackedScene" uid="uid://cio4a67y3say6" path="res://Scenes/Enemies/flying_enemy.tscn" id="4_m0vs7"]
+[ext_resource type="PackedScene" uid="uid://1hchvvhwj1wi" path="res://Scenes/Enemies/fast_enemy.tscn" id="5_uk3ap"]
+[ext_resource type="PackedScene" uid="uid://bh7y0n3xnivdh" path="res://Scenes/Enemies/basic_enemy.tscn" id="6_faikd"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_b6hu8"]
 distance = -61.0
@@ -12,6 +14,7 @@ distance = -61.0
 
 [node name="Player" parent="." instance=ExtResource("1_v2dk6")]
 top_level = true
+position = Vector2(0, -88)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 3
@@ -24,5 +27,11 @@ shape = SubResource("WorldBoundaryShape2D_b6hu8")
 
 [node name="UserInterface" parent="." instance=ExtResource("3_geku2")]
 
-[node name="Enemy" parent="." instance=ExtResource("2_46ln5")]
-position = Vector2(212, 27)
+[node name="FlyingEnemy" parent="." instance=ExtResource("4_m0vs7")]
+position = Vector2(777, -246)
+
+[node name="BasicEnemy" parent="." instance=ExtResource("6_faikd")]
+position = Vector2(447, -79)
+
+[node name="FastEnemy" parent="." instance=ExtResource("5_uk3ap")]
+position = Vector2(-470, -93)

@@ -17,23 +17,23 @@ func _ready():
 		if child is State:
 			states[child.name.to_lower()] = child
 	
+	# Get the parent node of the state machine
+	parent_node = get_parent()
+	
 	# Set the initial state
 	if initial_state:
 		initial_state.Enter()
 		current_state = initial_state
-	
-	# Get the parent node of the state machine
-	parent_node = get_parent()
 
 # Update the current state every frame
-func _process(delta):
+func _process(_delta):
 	if current_state:
-		current_state.Update(delta)
+		current_state.Update(_delta)
 
 # Update the current state every physics frame
-func _physics_process(delta):
+func _physics_process(_delta):
 	if current_state:
-		current_state.Physics_Update(delta)
+		current_state.Physics_Update(_delta)
 
 # Transition state
 func on_child_transition(state: State, new_state_name: String):
@@ -61,4 +61,8 @@ func _on_enemy_idle_transitioned(state: State, new_state_name: String):
 
 
 func _on_enemy_follow_transitioned(state: State, new_state_name: String):
+	on_child_transition(state, new_state_name)
+
+
+func _on_enemy_attack_transitioned(state: State, new_state_name: String):
 	on_child_transition(state, new_state_name)

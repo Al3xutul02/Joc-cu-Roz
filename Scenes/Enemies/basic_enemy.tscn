@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://bh7y0n3xnivdh"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/basic_enemy.gd" id="1_hpvn3"]
+[ext_resource type="Texture2D" uid="uid://7vbjlwhtwx4b" path="res://icon.svg" id="2_7n84u"]
+[ext_resource type="PackedScene" uid="uid://bj7vkxmyu0yr7" path="res://Scenes/Components/hitbox_component.tscn" id="3_rtwmh"]
+[ext_resource type="PackedScene" uid="uid://cib7412snd7l5" path="res://Scenes/Components/health_component.tscn" id="4_fkedi"]
+[ext_resource type="PackedScene" uid="uid://b8vwhlbudubkq" path="res://Scenes/Components/attack_component.tscn" id="5_y5g1t"]
+[ext_resource type="PackedScene" uid="uid://c674lxl54mubb" path="res://Scenes/State Machines/basic_enemy_state_machine.tscn" id="6_4mj7f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ueuyb"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nlw0t"]
+size = Vector2(50, 20)
+
+[node name="BasicEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "attack_component", "hitbox_component", "health_bar")]
+modulate = Color(1, 0.494118, 0.498039, 1)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_hpvn3")
+health_component = NodePath("HealthComponent")
+attack_component = NodePath("AttackComponent")
+hitbox_component = NodePath("HitboxComponent")
+health_bar = NodePath("HealthBar")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_7n84u")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_rtwmh")]
+shape = SubResource("RectangleShape2D_ueuyb")
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_fkedi")]
+
+[node name="AttackComponent" parent="." instance=ExtResource("5_y5g1t")]
+position = Vector2(-50, 0)
+shape = SubResource("RectangleShape2D_nlw0t")
+attack_cooldown_time = 1.0
+knockback_duration_time = 1.0
+
+[node name="BasicEnemyStateMachine" parent="." instance=ExtResource("6_4mj7f")]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -35.0
+offset_top = -45.0
+offset_right = 35.0
+offset_bottom = -36.0
+show_percentage = false

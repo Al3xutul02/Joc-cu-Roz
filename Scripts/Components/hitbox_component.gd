@@ -2,7 +2,7 @@ extends CollisionShape2D
 class_name HitboxComponent
 
 # Export variables
-@export var stagger_duration_time: float = 1.0
+@export var stagger_duration_time: float = 0.5
 
 # Timers
 @onready var knockback_duration: Timer = $KnockbackDuration
@@ -22,6 +22,9 @@ func apply_knockback(knockback: Vector2, direction: float, duration: float):
 		parent_node.velocity.y = knockback.y
 		knockback_duration.wait_time = duration
 		knockback_duration.start()
+	# Handle staggers
+	is_staggered = true
+	stagger_duration.start()
 
 #Apply damage from an attack
 func apply_damage(damage: int):
@@ -35,10 +38,6 @@ func apply_damage(damage: int):
 		if parent_node is Player:
 			parent_node.user_interface.health_bar.value = health_component.health_pct
 			health_component.can_be_damaged = false
-		
-		# Handle staggers
-		is_staggered = true
-		stagger_duration.start()
 
 func _ready():
 	# Get the parent

@@ -1,9 +1,9 @@
 extends State
 
 # Exported variables
-@export var follow_movement_speed: float = 200.0
-@export var attack_distance: float = 100.0
-@export var distance_from_player: float = 400.0
+@export var follow_movement_speed: float = 300.0
+@export var attack_distance: float = 200.0
+@export var distance_from_player: float = 500.0
 @export var aggro_time_duration: float = 1.0
 
 # Imported variables

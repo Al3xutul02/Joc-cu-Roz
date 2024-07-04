@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_fatoe"]
 [ext_resource type="Texture2D" uid="uid://7vbjlwhtwx4b" path="res://icon.svg" id="1_mabmo"]
+[ext_resource type="PackedScene" uid="uid://2pbo6ahjj8vt" path="res://Scenes/Weapons/sword.tscn" id="2_duw00"]
 [ext_resource type="PackedScene" uid="uid://bj7vkxmyu0yr7" path="res://Scenes/Components/hitbox_component.tscn" id="3_hqu73"]
 [ext_resource type="PackedScene" uid="uid://cib7412snd7l5" path="res://Scenes/Components/health_component.tscn" id="3_yp32f"]
 [ext_resource type="PackedScene" uid="uid://b8vwhlbudubkq" path="res://Scenes/Components/attack_component.tscn" id="4_dlhmm"]
-[ext_resource type="PackedScene" uid="uid://2pbo6ahjj8vt" path="res://Scenes/Weapons/sword.tscn" id="6_iqf1k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h6pcv"]
 size = Vector2(120, 120)
@@ -16,28 +16,34 @@ size = Vector2(100, 30)
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_fatoe")
 
+[node name="Sword" parent="." instance=ExtResource("2_duw00")]
+damage = 30
+attack_duration_time = 0.15
+attack_cooldown_time = 0.3
+attack_knockback_force = Vector2(100, -300)
+knockback_duration_time = 0.75
+attack_position = Vector2(100, -70)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -70)
 texture = ExtResource("1_mabmo")
 
 [node name="HitboxComponent" parent="." instance=ExtResource("3_hqu73")]
+position = Vector2(0, -70)
 shape = SubResource("RectangleShape2D_h6pcv")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_yp32f")]
 
 [node name="AttackComponent" parent="." instance=ExtResource("4_dlhmm")]
-position = Vector2(100, 0)
+position = Vector2(100, -70)
 shape = SubResource("RectangleShape2D_bvhh0")
 collision_mask = 2
 
-[node name="Sword" parent="." instance=ExtResource("6_iqf1k")]
-
 [node name="DashBar" type="ProgressBar" parent="."]
 offset_left = -48.0
-offset_top = 70.0
 offset_right = 52.0
-offset_bottom = 87.0
+offset_bottom = 17.0
 show_percentage = false
-metadata/_edit_use_anchors_ = true
 
 [node name="timers" type="Node" parent="."]
 

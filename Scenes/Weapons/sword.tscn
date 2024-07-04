@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://2pbo6ahjj8vt"]
+
+[ext_resource type="Script" path="res://Scripts/Weapons/sword.gd" id="1_mleia"]
+
+[node name="Sword" type="Node2D"]
+script = ExtResource("1_mleia")

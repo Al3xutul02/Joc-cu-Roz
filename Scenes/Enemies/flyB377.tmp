@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://cio4a67y3say6"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/flying_enemy.gd" id="1_dl3yb"]
+[ext_resource type="Texture2D" uid="uid://7vbjlwhtwx4b" path="res://icon.svg" id="2_it8oc"]
+[ext_resource type="PackedScene" uid="uid://bj7vkxmyu0yr7" path="res://Scenes/Components/hitbox_component.tscn" id="3_f24yo"]
+[ext_resource type="PackedScene" uid="uid://cib7412snd7l5" path="res://Scenes/Components/health_component.tscn" id="4_xmuib"]
+[ext_resource type="PackedScene" uid="uid://4qwymoa6y26t" path="res://Scenes/State Machines/flying_enemy_state_machine.tscn" id="5_xiw1i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ueuyb"]
+size = Vector2(60, 60)
+
+[node name="FlyingEnemy" type="CharacterBody2D"]
+modulate = Color(1, 0.494118, 0.498039, 1)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_dl3yb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -35)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_it8oc")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_f24yo")]
+position = Vector2(0, -35)
+shape = SubResource("RectangleShape2D_ueuyb")
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_xmuib")]
+
+[node name="FlyingEnemyStateMachine" parent="." instance=ExtResource("5_xiw1i")]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -35.0
+offset_top = -80.0
+offset_right = 35.0
+offset_bottom = -71.0
+show_percentage = false

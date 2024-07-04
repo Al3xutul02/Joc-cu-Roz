@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://4qwymoa6y26t"]
+
+[ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="1_h83q3"]
+[ext_resource type="Script" path="res://Scripts/States/Flying Enemy/FlyingEnemyIdle.gd" id="2_i6n72"]
+[ext_resource type="Script" path="res://Scripts/States/Flying Enemy/FlyingEnemyFollow.gd" id="3_28k4q"]
+[ext_resource type="Script" path="res://Scripts/States/Flying Enemy/FlyingEnemyAttack.gd" id="4_fnnpf"]
+
+[node name="FlyingEnemyStateMachine" type="Node" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_h83q3")
+initial_state = NodePath("EnemyIdle")
+
+[node name="EnemyIdle" type="Node" parent="."]
+script = ExtResource("2_i6n72")
+
+[node name="WanderTime" type="Timer" parent="EnemyIdle"]
+
+[node name="IdleTime" type="Timer" parent="EnemyIdle"]
+
+[node name="FlyTime" type="Timer" parent="EnemyIdle"]
+
+[node name="EnemyFollow" type="Node" parent="."]
+script = ExtResource("3_28k4q")
+
+[node name="AggroTime" type="Timer" parent="EnemyFollow"]
+
+[node name="EnemyAttack" type="Node" parent="."]
+script = ExtResource("4_fnnpf")
+
+[node name="AttackCooldown" type="Timer" parent="EnemyAttack"]
+
+[node name="InitialCooldown" type="Timer" parent="EnemyAttack"]
+
+[connection signal="Transitioned" from="EnemyIdle" to="." method="_on_enemy_idle_transitioned"]
+[connection signal="timeout" from="EnemyIdle/WanderTime" to="EnemyIdle" method="_on_wander_time_timeout"]
+[connection signal="timeout" from="EnemyIdle/IdleTime" to="EnemyIdle" method="_on_idle_time_timeout"]
+[connection signal="timeout" from="EnemyIdle/FlyTime" to="EnemyIdle" method="_on_fly_time_timeout"]
+[connection signal="Transitioned" from="EnemyFollow" to="." method="_on_enemy_follow_transitioned"]
+[connection signal="timeout" from="EnemyFollow/AggroTime" to="EnemyFollow" method="_on_aggro_time_timeout"]
+[connection signal="Transitioned" from="EnemyAttack" to="." method="_on_enemy_attack_transitioned"]
+[connection signal="timeout" from="EnemyAttack/AttackCooldown" to="EnemyAttack" method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="EnemyAttack/InitialCooldown" to="EnemyAttack" method="_on_initial_cooldown_timeout"]

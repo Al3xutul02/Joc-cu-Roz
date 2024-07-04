@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5hckul4bcqya"]
+
+[ext_resource type="Script" path="res://Scripts/Weapons/scythe.gd" id="1_dr8uj"]
+
+[node name="Scythe" type="Node2D"]
+script = ExtResource("1_dr8uj")

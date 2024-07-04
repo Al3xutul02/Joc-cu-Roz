@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c674lxl54mubb"]
+
+[ext_resource type="Script" path="res://Scripts/StateMachine.gd" id="1_x1is5"]
+[ext_resource type="Script" path="res://Scripts/States/Basic Enemy/BasicEnemyIdle.gd" id="2_3k82h"]
+[ext_resource type="Script" path="res://Scripts/States/Basic Enemy/BasicEnemyFollow.gd" id="3_j17ra"]
+[ext_resource type="Script" path="res://Scripts/States/Basic Enemy/BasicEnemyAttack.gd" id="4_crbfu"]
+
+[node name="BasicEnemyStateMachine" type="Node" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_x1is5")
+initial_state = NodePath("EnemyIdle")
+
+[node name="EnemyIdle" type="Node" parent="."]
+script = ExtResource("2_3k82h")
+
+[node name="WanderTime" type="Timer" parent="EnemyIdle"]
+
+[node name="IdleTime" type="Timer" parent="EnemyIdle"]
+
+[node name="EnemyFollow" type="Node" parent="."]
+script = ExtResource("3_j17ra")
+
+[node name="AggroTime" type="Timer" parent="EnemyFollow"]
+
+[node name="EnemyAttack" type="Node" parent="."]
+script = ExtResource("4_crbfu")
+
+[connection signal="Transitioned" from="EnemyIdle" to="." method="_on_enemy_idle_transitioned"]
+[connection signal="timeout" from="EnemyIdle/WanderTime" to="EnemyIdle" method="_on_wander_time_timeout"]
+[connection signal="timeout" from="EnemyIdle/IdleTime" to="EnemyIdle" method="_on_idle_time_timeout"]
+[connection signal="Transitioned" from="EnemyFollow" to="." method="_on_enemy_follow_transitioned"]
+[connection signal="timeout" from="EnemyFollow/AggroTime" to="EnemyFollow" method="_on_aggro_time_timeout"]
+[connection signal="Transitioned" from="EnemyAttack" to="." method="_on_enemy_attack_transitioned"]

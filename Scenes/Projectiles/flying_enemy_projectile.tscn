@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6v55n5msy6tb"]
+
+[ext_resource type="Texture2D" uid="uid://7vbjlwhtwx4b" path="res://icon.svg" id="1_1owrb"]
+[ext_resource type="Script" path="res://Scripts/Projectiles/flying_enemy_projectile.gd" id="1_5qnwe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rtypc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qlb5k"]
+size = Vector2(30, 30)
+
+[node name="FlyingEnemyProjectile" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_5qnwe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_1owrb")
+
+[node name="HitboxShape" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rtypc")
+
+[node name="AttackShape" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_qlb5k")
+target_position = Vector2(0, 0)

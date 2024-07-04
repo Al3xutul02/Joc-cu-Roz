@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://1hchvvhwj1wi"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/fast_enemy.gd" id="1_pti7r"]
+[ext_resource type="Texture2D" uid="uid://7vbjlwhtwx4b" path="res://icon.svg" id="2_dbkjl"]
+[ext_resource type="PackedScene" uid="uid://bj7vkxmyu0yr7" path="res://Scenes/Components/hitbox_component.tscn" id="3_1uf4s"]
+[ext_resource type="PackedScene" uid="uid://cib7412snd7l5" path="res://Scenes/Components/health_component.tscn" id="4_wpc50"]
+[ext_resource type="PackedScene" uid="uid://b8vwhlbudubkq" path="res://Scenes/Components/attack_component.tscn" id="5_ji5uf"]
+[ext_resource type="PackedScene" uid="uid://cneftm01mlvsj" path="res://Scenes/State Machines/fast_enemy_state_machine.tscn" id="6_eyxa4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ueuyb"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nlw0t"]
+size = Vector2(25, 40)
+
+[node name="FastEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "attack_component", "hitbox_component", "health_bar")]
+modulate = Color(0.453456, 0.771889, 1.92523e-06, 1)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_pti7r")
+health_component = NodePath("HealthComponent")
+attack_component = NodePath("AttackComponent")
+hitbox_component = NodePath("HitboxComponent")
+health_bar = NodePath("HealthBar")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_dbkjl")
+
+[node name="HitboxComponent" parent="." instance=ExtResource("3_1uf4s")]
+shape = SubResource("RectangleShape2D_ueuyb")
+
+[node name="HealthComponent" parent="." instance=ExtResource("4_wpc50")]
+
+[node name="AttackComponent" parent="." instance=ExtResource("5_ji5uf")]
+position = Vector2(-25, 0)
+shape = SubResource("RectangleShape2D_nlw0t")
+attack_cooldown_time = 2.0
+knockback_duration_time = 1.0
+
+[node name="FastEnemyStateMachine" parent="." instance=ExtResource("6_eyxa4")]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -35.0
+offset_top = -45.0
+offset_right = 35.0
+offset_bottom = -36.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true

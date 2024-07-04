@@ -7,13 +7,14 @@ class_name Player
 @export var jump_velocity: float = -600.0
 @export_group("Dash Parameters")
 @export var dash_cooldown_time: float = 0.5
-@export var dash_duration_time: float = 0.15
+@export var dash_duration_time: float = 0.3
 
 # Imported variables
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var attack_component: AttackComponent = $AttackComponent
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var dash_bar: ProgressBar = $DashBar
+@onready var current_weapon = $Sword
 
 # Timers
 @onready var dash_cooldown: Timer = $timers/DashCooldown
@@ -26,8 +27,8 @@ var user_interface: UserInterface
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var dash_speed: float = speed * 5
-var direction: float = 1
-var jygshdfnz = ["ersdf", 1673, true]
+var direction: float = 1 
+
 # Boolean variables
 var can_dash: bool
 var is_dashing: bool
@@ -88,6 +89,25 @@ func _physics_process(delta):
 		attack_component.enabled = true
 		attack_component.visible = true
 		attack_component.can_attack = false
+
+	## Handle weapons
+	# Handle sword
+	if Input.is_action_just_pressed("Weapon1") and current_weapon != Sword:
+		current_weapon.queue_free()
+		current_weapon = Sword.new()
+		add_child(current_weapon)
+	
+	# Handle dagger
+	if Input.is_action_just_pressed("Weapon2") and current_weapon != Dagger:
+		current_weapon.queue_free()
+		current_weapon = Dagger.new()
+		add_child(current_weapon)
+	
+	# Handle scyche
+	if Input.is_action_just_pressed("Weapon3") and current_weapon != Scythe:
+		current_weapon.queue_free()
+		current_weapon = Scythe.new()
+		add_child(current_weapon)
 	
 	# Update attack hitbox according to direction
 	if direction != 0:
