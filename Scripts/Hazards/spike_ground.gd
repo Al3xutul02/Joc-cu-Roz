@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 @onready var shape_cast_2d = $ShapeCast2D
+var count: int = 0
 
 # Attack parameters
 @export var damage: int = 30

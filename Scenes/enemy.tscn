@@ -31,6 +31,7 @@ shape = SubResource("RectangleShape2D_ueuyb")
 [node name="HealthComponent" parent="." instance=ExtResource("3_7ktcm")]
 
 [node name="AttackComponent" parent="." instance=ExtResource("4_twilm")]
+visible = true
 position = Vector2(-50, -35)
 shape = SubResource("RectangleShape2D_nlw0t")
 attack_cooldown_time = 1.0
