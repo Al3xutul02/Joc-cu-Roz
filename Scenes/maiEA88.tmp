@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cuh1b6oat4n68"]
+[gd_scene load_steps=22 format=3 uid="uid://cuh1b6oat4n68"]
 
 [ext_resource type="PackedScene" uid="uid://crh6v2kmib8lt" path="res://Scenes/game_manager.tscn" id="1_mxc8x"]
 [ext_resource type="PackedScene" uid="uid://b8vko300dybyo" path="res://Scenes/player.tscn" id="1_v2dk6"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://bh7y0n3xnivdh" path="res://Scenes/Enemies/basic_enemy.tscn" id="7_xghll"]
 [ext_resource type="PackedScene" uid="uid://1hchvvhwj1wi" path="res://Scenes/Enemies/fast_enemy.tscn" id="8_b878y"]
 [ext_resource type="PackedScene" uid="uid://cio4a67y3say6" path="res://Scenes/Enemies/flying_enemy.tscn" id="9_pbekf"]
-[ext_resource type="PackedScene" uid="uid://17ye41ox0n2c" path="res://Scenes/key.tscn" id="11_1vjpl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lym37"]
 size = Vector2(1500, 50)
@@ -466,6 +465,3 @@ position = Vector2(4920, -614)
 
 [node name="FlyingEnemy2" parent="." instance=ExtResource("9_pbekf")]
 position = Vector2(6546, -243)
-
-[node name="Key" parent="." instance=ExtResource("11_1vjpl")]
-position = Vector2(5054, -83)

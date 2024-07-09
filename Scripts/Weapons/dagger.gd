@@ -2,6 +2,7 @@ extends Node2D
 class_name Dagger
 
 # Attack parameters
+@export_group("Attack Parameters")
 @export var damage: int = 20
 @export var attack_duration_time: float = 0.02
 @export var attack_cooldown_time: float = 0.2
@@ -9,6 +10,7 @@ class_name Dagger
 @export var knockback_duration_time: float = 0.1
 
 # Attack hitbox parameters
+@export_group("Attack Hitbox Parameters")
 @export var attack_position: Vector2 = Vector2(80, 0)
 @export var attack_size: Vector2 = Vector2(100, 70)
 
@@ -35,3 +37,10 @@ func _ready():
 	var attack_shape: RectangleShape2D = RectangleShape2D.new()
 	attack_shape.size = attack_size
 	attack_component.shape = attack_shape
+	
+	# Set the sprite size according to the attack size
+	var sprite_width: int = 128
+	var sprite_height: int = 128
+	
+	attack_component.sprite_2d.scale.x = attack_size.x / sprite_width
+	attack_component.sprite_2d.scale.y = attack_size.y / sprite_height

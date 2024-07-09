@@ -1,5 +1,9 @@
-[gd_scene format=3 uid="uid://d3mkp80eltp23"]
+[gd_scene load_steps=2 format=3 uid="uid://d3mkp80eltp23"]
+
+[ext_resource type="Script" path="res://Scripts/player_camera.gd" id="1_o415q"]
 
 [node name="PlayerCamera" type="Camera2D"]
 top_level = true
 zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+script = ExtResource("1_o415q")

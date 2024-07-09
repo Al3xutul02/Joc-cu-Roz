@@ -20,7 +20,7 @@ func Enter():
 	state_machine = get_parent()
 	aggro_time.wait_time = aggro_time_duration
 
-func Physics_Update(delta: float):
+func Physics_Update(_delta: float):
 	# Calculate distance and direction
 	var distance_vector: Vector2 = player.position - state_machine.parent_node.position
 	var distance: float = distance_vector.length()

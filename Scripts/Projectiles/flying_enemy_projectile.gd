@@ -33,6 +33,8 @@ func _physics_process(delta):
 				enemy.hitbox_component.apply_damage(damage)
 			if enemy is Player and !enemy.is_dashing:
 				queue_free()
+			if enemy is StaticBody2D:
+				queue_free()
 	
 	#Update position
 	position += velocity * delta

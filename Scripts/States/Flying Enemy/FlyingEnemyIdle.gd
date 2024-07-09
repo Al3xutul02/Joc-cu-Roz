@@ -5,7 +5,7 @@ extends State
 @export var idle_movement_speed: float = 50.0
 @export var minimum_distance: float = -100.0
 @export var maximum_distance: float = 100.0
-@export var distance_from_player: float = 250.0
+@export var distance_from_player: float = 500.0
 @export_category("Time Parameters")
 @export var wander_time_duration: float = 1.0
 @export var idle_time_duration: float = 1.0

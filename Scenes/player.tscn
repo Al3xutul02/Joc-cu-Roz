@@ -14,6 +14,9 @@ size = Vector2(120, 120)
 size = Vector2(100, 30)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+light_mask = 512
+visibility_layer = 512
+z_index = 1
 script = ExtResource("1_fatoe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -27,11 +30,15 @@ shape = SubResource("RectangleShape2D_h6pcv")
 [node name="AttackComponent" parent="." instance=ExtResource("4_dlhmm")]
 position = Vector2(100, 0)
 shape = SubResource("RectangleShape2D_bvhh0")
-collision_mask = 2
+collision_mask = 14
+
+[node name="GroundDetector" type="RayCast2D" parent="."]
+target_position = Vector2(0, 75)
 
 [node name="Sword" parent="." instance=ExtResource("6_iqf1k")]
 
 [node name="DashBar" type="ProgressBar" parent="."]
+z_index = 1
 offset_left = -48.0
 offset_top = 70.0
 offset_right = 52.0

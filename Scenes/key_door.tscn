@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0kvu5dkp1oue"]
+
+[ext_resource type="Script" path="res://Scripts/door.gd" id="1_lv15s"]
+[ext_resource type="Texture2D" uid="uid://7vbjlwhtwx4b" path="res://icon.svg" id="2_ex2lj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2310u"]
+size = Vector2(50, 200)
+
+[node name="KeyDoor" type="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_lv15s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 1.6)
+texture = ExtResource("2_ex2lj")
+
+[node name="DoorHitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2310u")
+
+[node name="OpenTime" type="Timer" parent="."]
+
+[connection signal="timeout" from="OpenTime" to="." method="_on_open_time_timeout"]

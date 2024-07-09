@@ -3,11 +3,11 @@ class_name Player
 
 # Exported variables
 @export_group("Movement Parameters")
-@export var speed: float = 300.0
-@export var jump_velocity: float = -600.0
+@export var speed: float = 400.0
+@export var jump_velocity: float = -650.0
 @export_group("Dash Parameters")
-@export var dash_cooldown_time: float = 0.5
-@export var dash_duration_time: float = 0.3
+@export var dash_cooldown_time: float = 0.75
+@export var dash_duration_time: float = 0.25
 
 # Imported variables
 @onready var health_component: HealthComponent = $HealthComponent
@@ -15,6 +15,7 @@ class_name Player
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
 @onready var dash_bar: ProgressBar = $DashBar
 @onready var current_weapon = $Sword
+@onready var ground_detector = $GroundDetector
 
 # Timers
 @onready var dash_cooldown: Timer = $timers/DashCooldown
@@ -108,6 +109,12 @@ func _physics_process(delta):
 		current_weapon.queue_free()
 		current_weapon = Scythe.new()
 		add_child(current_weapon)
+	
+	# Handle moving down a platform
+	if Input.is_action_just_pressed("move_down") and ground_detector.is_colliding():
+		var object = ground_detector.get_collider()
+		if object is Platform:
+			position.y += 1
 	
 	# Update attack hitbox according to direction
 	if direction != 0:

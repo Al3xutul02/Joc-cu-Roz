@@ -31,6 +31,7 @@ texture = ExtResource("2_dbkjl")
 shape = SubResource("RectangleShape2D_ueuyb")
 
 [node name="HealthComponent" parent="." instance=ExtResource("4_wpc50")]
+max_health = null
 
 [node name="AttackComponent" parent="." instance=ExtResource("5_ji5uf")]
 position = Vector2(-25, 0)

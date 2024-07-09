@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://17ye41ox0n2c"]
+
+[ext_resource type="Script" path="res://Scripts/key.gd" id="1_ajnk7"]
+[ext_resource type="Texture2D" uid="uid://7vbjlwhtwx4b" path="res://icon.svg" id="2_q5yyc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxwl8"]
+size = Vector2(30, 30)
+
+[node name="Key" type="Node2D"]
+script = ExtResource("1_ajnk7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_q5yyc")
+
+[node name="PlayerDetector" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_pxwl8")
+target_position = Vector2(0, 0)

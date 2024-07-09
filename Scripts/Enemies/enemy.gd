@@ -18,13 +18,13 @@ func _ready():
 	health_bar.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += gravity * _delta
 	
 	# Update attack hitbox according to direction
 	if direction != 0:

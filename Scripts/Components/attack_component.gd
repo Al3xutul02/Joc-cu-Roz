@@ -13,6 +13,7 @@ class_name AttackComponent
 
 @onready var attack_duration: Timer = $AttackDuration
 @onready var attack_cooldown: Timer = $AttackCooldown
+@onready var sprite_2d = $Sprite2D
 
 var parent_node: Node2D
 
@@ -28,7 +29,7 @@ func _ready():
 	is_attacking = false
 
 # Gets called on every frame
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Used for continuous attacks over a period of time
 	if is_colliding() and is_attacking:
 		# Check for every collision
@@ -54,6 +55,10 @@ func _on_attack_duration_timeout():
 				attack_direction = position.x - parent_node.position.x
 				enemy.hitbox_component.apply_knockback(attack_knockback_force, attack_direction, knockback_duration_time)
 				enemy.hitbox_component.apply_damage(damage)
+			if parent_node is Player and enemy is Lever:
+				enemy.is_opened = !enemy.is_opened
+			if enemy is Projectile:
+				enemy.queue_free()
 
 	# Disable the component
 	enabled = false
